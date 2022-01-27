@@ -15,4 +15,5 @@ use App\Http\Controllers\PostsController;
 
 Route::get('/', [PostsController::class, 'show']);
 Route::get('/create', [PostsController::class, 'create']);
+Route::post('/create', [PostsController::class, 'addToBase']);
 

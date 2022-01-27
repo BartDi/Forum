@@ -7,6 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-
+    <form action="{{URL::to('create')}}" method="POST">
+    @csrf
+    <label>Title: </label>
+    <input type="text" name="title"><br>
+    <label>Topic: </label>
+    <input type="text" name="topic"><br>
+    <label>Content: </label>
+    <input type="text" name="content"><br>
+    <input type="submit">
+    </form>
 </body>
 </html>

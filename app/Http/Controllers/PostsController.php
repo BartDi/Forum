@@ -15,6 +15,17 @@ class PostsController extends Controller
     }
 
     function create(){
-        return "12";
+        return view('create');
+    }
+    function addToBase(Request $req){
+        $post = new Post;
+
+        $post -> title = $req->title;
+        $post -> topic = $req->topic;
+        $post -> content = $req->content;
+
+        $post -> save(); 
+
+        return redirect('/');
     }
 }
