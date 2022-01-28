@@ -15,7 +15,11 @@
     <label>Title: </label>
     <input type="text" name="title"><br>
     <label>Topic: </label>
-    <input type="text" name="topic"><br>
+    <select>
+    @foreach ($categories as $category)
+    <option>{{$category['name']}}</option>
+    @endforeach 
+    </select><br>
     <label>Content: </label>
     <input type="text" name="content"><br>
     <input type="submit">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 
 
 class PostsController extends Controller
@@ -19,7 +20,8 @@ class PostsController extends Controller
     function create(){
         return view('create' ,[
             'user_id' => auth()->id(), 
-            'user_name' => auth()->user()->name
+            'user_name' => auth()->user()->name,
+            'categories' => Category::select('name')->get()
         ]);
     }
     function addToBase(Request $req){
