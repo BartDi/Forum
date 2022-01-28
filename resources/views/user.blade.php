@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>USER</h1>
+    <h1>{{$user->name}}</h1>
+    
 </body>
 </html>

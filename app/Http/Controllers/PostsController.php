@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+use App\Models\User;
+
 
 class PostsController extends Controller
 {
@@ -34,8 +36,7 @@ class PostsController extends Controller
         return redirect('/');
     }
     function userProfile($id){
-        #$user = User::find($id) 
-        return view('user');
+        return view('user', ['user' => User::findOrFail($id)]);
     }
 }
 
