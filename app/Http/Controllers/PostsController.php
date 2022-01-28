@@ -15,11 +15,16 @@ class PostsController extends Controller
     }
 
     function create(){
-        return view('create');
+        return view('create' ,[
+            'user_id' => auth()->id(), 
+            'user_name' => auth()->user()->name
+        ]);
     }
     function addToBase(Request $req){
         $post = new Post;
-
+        
+        $post -> user_id = $req->user_id;
+        $post -> user_name = $req->user_name;
         $post -> title = $req->title;
         $post -> topic = $req->topic;
         $post -> content = $req->content;
@@ -28,4 +33,16 @@ class PostsController extends Controller
 
         return redirect('/');
     }
+    function userProfile($id){
+        #$user = User::find($id) 
+        return view('user');
+    }
 }
+
+
+
+
+
+
+
+

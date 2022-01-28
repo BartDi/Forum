@@ -9,6 +9,9 @@
 <body>
     <form action="{{URL::to('create')}}" method="POST">
     @csrf
+    <input type="hidden" name="user_id" value="{{$user_id}}">
+    <input type="hidden" name="user_name" value="{{$user_name}}">
+    
     <label>Title: </label>
     <input type="text" name="title"><br>
     <label>Topic: </label>

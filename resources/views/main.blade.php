@@ -12,7 +12,7 @@
     <h1>Main</h1>
     @foreach ($posts as $post)
     <table class="table table-dark">
-        <tr><th></th></tr>
+        <tr><th><a href='{{url("users/{$post->user_id}")}}'>{{$post->user_name}}</a></th></tr>
             <tr>
                 <td>
                 {{$post->title}}
