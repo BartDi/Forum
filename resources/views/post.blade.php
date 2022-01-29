@@ -8,10 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <a href="{{URL::to('create')}}"><h2>Create your post</h2></a>
-    <h1>Posts:</h1>
-    @foreach ($posts as $post)
-    <div class="container" style="padding:100px; border:1px solid black;">
+<div class="container" style="padding:100px; border:1px solid black;">
         <div class="row justify-content-start">
             <div class="col-2">
                 <h5><a href='{{url("users/{$post->user_id}")}}'>{{$post->user_name}}</a></h5>
@@ -19,10 +16,14 @@
             <div class="col-2">
                 <h6 style="background-color:grey;border:1px solid black; text-align:center; border-radius:9%;">{{$post->topic}}</h6>
             </div>
+            <div class="col-5">
+                <h4 style="float:left;">{{$count}}</h4>
+                <a href='{{url("like/{$post->id}")}}'><img src="{{URL('/images/heart.png')}}" alt="like"></a>
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col" style="text-align:center;">
-                <a href='{{url("post/{$post->id}")}}'><h3><u>{{$post->title}}</u></h3></a>
+                <h3><u>{{$post->title}}</u></h3>
             </div>
         </div>
         <div class="row">
@@ -31,6 +32,5 @@
             </div>
         </div>
     </div>
-    @endforeach
 </body>
 </html>

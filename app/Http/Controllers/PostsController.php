@@ -9,6 +9,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 
 class PostsController extends Controller
@@ -59,6 +60,40 @@ class PostsController extends Controller
 
         return redirect('/');
     }
+    function like($pId){
+        $user_id = auth()->id();
+        $isDeleted = False;
+        $posts = DB::table('user_liked_posts')
+            ->select('post_id')
+            ->where('user_id', '=', $user_id)
+            ->get();
+        foreach($posts as $post){
+            foreach($post as $liked){
+                if($liked == $pId){
+                    DB::table('user_liked_posts')
+                        ->where('post_id', '=', $pId)
+                        ->where('user_id', '=', $user_id)
+                        ->delete();
+                    $isDeleted = True;
+                }
+            }
+        }
+        if($isDeleted==False){
+            DB::table('user_liked_posts')->insert([
+                'user_id' => $user_id,
+                'post_id' => $pId
+            ]);
+        }
+        return redirect()->back();
+    }
+    function postSite($id){
+        $count = DB::table('user_liked_posts')
+            ->where('post_id', '=', $id)
+            ->count();
+        return view('post', ['post'=>Post::findOrFail($id), 'count'=>$count]);
+    }
+
+
 }
 
 

@@ -23,3 +23,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/addCat', [PostsController::class, 'categoriesForm'])->middleware('auth');
 Route::post('/addCat', [PostsController::class, 'addCategory'])->middleware('auth');
+Route::get('/like/{pId}', [PostsController::class, 'like'])->middleware('auth');
+Route::get('/post/{id}', [PostsController::class, 'postSite']);
