@@ -21,3 +21,5 @@ Route::get('users/{user_id}', [PostsController::class, 'userProfile']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/addCat', [PostsController::class, 'categoriesForm'])->middleware('auth');
+Route::post('/addCat', [PostsController::class, 'addCategory'])->middleware('auth');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -46,6 +47,17 @@ class PostsController extends Controller
     }
     function userProfile($id){
         return view('user', ['user' => User::findOrFail($id)]);
+    }
+    function categoriesForm(){
+        return view('add');
+    }
+    function addCategory(CategoryRequest $req){
+        $cat = new Category;
+
+        $cat -> name = $req->name;
+        $cat->save();
+
+        return redirect('/');
     }
 }
 

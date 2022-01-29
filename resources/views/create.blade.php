@@ -37,6 +37,6 @@
     </div>
     <input type="submit">
     </form>
-
+<h4><a href="{{URL::to('addCat')}}">Do you want to add Category?</a></h4>
 </body>
 </html>
