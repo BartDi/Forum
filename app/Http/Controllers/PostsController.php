@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -24,9 +25,15 @@ class PostsController extends Controller
             'categories' => Category::select('name')->get()
         ]);
     }
-    function addToBase(Request $req){
+    /**
+ * Store a new blog post.
+ *
+ * @param  \App\Http\Requests\StorePostRequest  $request
+ * @return Illuminate\Http\Response
+ */
+    function addToBase(StorePostRequest $req){
         $post = new Post;
-        
+
         $post -> user_id = $req->user_id;
         $post -> user_name = $req->user_name;
         $post -> title = $req->title;

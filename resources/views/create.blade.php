@@ -7,22 +7,36 @@
     <title>Document</title>
 </head>
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{URL::to('create')}}" method="POST">
     @csrf
     <input type="hidden" name="user_id" value="{{$user_id}}">
     <input type="hidden" name="user_name" value="{{$user_name}}">
-    
-    <label>Title: </label>
-    <input type="text" name="title"><br>
-    <label>Topic: </label>
-    <select>
-    @foreach ($categories as $category)
-    <option>{{$category['name']}}</option>
-    @endforeach 
-    </select><br>
-    <label>Content: </label>
-    <input type="text" name="content"><br>
+    <div>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title">
+    <label for="topic">Topic:</label>
+    <select id="topic" name="topic">
+        <option selected disabled>Choose one</option>
+        @foreach ($categories as $category)
+        <option>{{$category['name']}}</option>
+        @endforeach 
+    </select>
+    </div>
+    <div>
+    <label for="textarea" >Content:</label><br>
+    <textarea rows="5" cols="70" id="textarea" name="content"></textarea>
+    </div>
     <input type="submit">
     </form>
+
 </body>
 </html>
