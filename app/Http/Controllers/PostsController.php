@@ -61,6 +61,7 @@ class PostsController extends Controller
         return redirect('/');
     }
     function like($pId){
+        $postModel = Post::findOrFail($pId);
         $user_id = auth()->id();
         $isDeleted = False;
         $posts = DB::table('user_liked_posts')
@@ -74,6 +75,7 @@ class PostsController extends Controller
                         ->where('post_id', '=', $pId)
                         ->where('user_id', '=', $user_id)
                         ->delete();
+                        $postModel->likes -= 1;
                     $isDeleted = True;
                 }
             }
@@ -83,16 +85,24 @@ class PostsController extends Controller
                 'user_id' => $user_id,
                 'post_id' => $pId
             ]);
+            $postModel->likes += 1;
         }
+        $postModel->save();
         return redirect()->back();
     }
     function postSite($id){
-        $count = DB::table('user_liked_posts')
-            ->where('post_id', '=', $id)
-            ->count();
-        return view('post', ['post'=>Post::findOrFail($id), 'count'=>$count]);
+        return view('post', ['post'=>Post::findOrFail($id), 'url'=> $this->isLiked($id)]);
     }
-
+    public function isLiked($id){
+        $url = '';
+        if(DB::table('user_liked_posts')->where('post_id', '=', $id)->where('user_id', '=', auth()->id())->exists()){
+            $url = '/images/heartLiked.png'; 
+        }
+        else{
+            $url = '/images/heart.png';
+        }
+        return $url;
+    }
 
 }
 

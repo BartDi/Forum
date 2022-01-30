@@ -17,8 +17,8 @@
                 <h6 style="background-color:grey;border:1px solid black; text-align:center; border-radius:9%;">{{$post->topic}}</h6>
             </div>
             <div class="col-5">
-                <h4 style="float:left;">{{$count}}</h4>
-                <a href='{{url("like/{$post->id}")}}'><img src="{{URL('/images/heart.png')}}" alt="like"></a>
+                <h4 style="float:left;">{{$post->likes}}</h4>
+                <a href='{{url("like/{$post->id}")}}'><img src="{{URL($url)}}" alt="like"></a>
             </div>
         </div>
         <div class="row justify-content-center">
