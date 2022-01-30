@@ -25,3 +25,4 @@ Route::get('/addCat', [PostsController::class, 'categoriesForm'])->middleware('a
 Route::post('/addCat', [PostsController::class, 'addCategory'])->middleware('auth');
 Route::get('/like/{pId}', [PostsController::class, 'like'])->middleware('auth');
 Route::get('/post/{id}', [PostsController::class, 'postSite']);
+Route::get('/category/{name}', [PostsController::class, 'oneCategory']);

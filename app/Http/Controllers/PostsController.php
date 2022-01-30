@@ -27,12 +27,6 @@ class PostsController extends Controller
             'categories' => Category::select('name')->get()
         ]);
     }
-    /**
- * Store a new blog post.
- *
- * @param  \App\Http\Requests\StorePostRequest  $request
- * @return Illuminate\Http\Response
- */
     function addToBase(StorePostRequest $req){
         $post = new Post;
 
@@ -41,6 +35,7 @@ class PostsController extends Controller
         $post -> title = $req->title;
         $post -> topic = $req->topic;
         $post -> content = $req->content;
+        $post -> likes = 0;
 
         $post -> save(); 
 
@@ -103,7 +98,10 @@ class PostsController extends Controller
         }
         return $url;
     }
-
+    function oneCategory($cat){
+        $posts = Post::where('topic', $cat)->get();
+        return view('category', ['posts'=>$posts]);
+    }
 }
 
 

@@ -17,7 +17,7 @@
                 <h5><a href='{{url("users/{$post->user_id}")}}'>{{$post->user_name}}</a></h5>
             </div>
             <div class="col-2">
-                <h6 style="background-color:grey;border:1px solid black; text-align:center; border-radius:9%;">{{$post->topic}}</h6>
+                <a href='{{url("category/{$post->topic}")}}'><h6 style="background-color:grey;border:1px solid black; text-align:center; border-radius:9%;">{{$post->topic}}</h6></a>
             </div>
         </div>
         <div class="row justify-content-center">
