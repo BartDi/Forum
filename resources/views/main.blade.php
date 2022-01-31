@@ -8,7 +8,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <a href="{{URL::to('create')}}"><h2>Create your post</h2></a>
+    <x-Header id="{{auth()->id()}}"/>
+
     <h1>Posts:</h1>
     @foreach ($posts as $post)
     <div class="container" style="padding:100px; border:1px solid black;">

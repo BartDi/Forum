@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\DB;
 class PostsController extends Controller
 {
     public function show(){
-
         $posts = Post::all();
         return view('main', [ 'posts' => $posts ]);
     }
@@ -83,7 +82,7 @@ class PostsController extends Controller
             $postModel->likes += 1;
         }
         $postModel->save();
-        return redirect()->back();
+        return back();
     }
     function postSite($id){
         return view('post', ['post'=>Post::findOrFail($id), 'url'=> $this->isLiked($id)]);

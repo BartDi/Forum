@@ -7,6 +7,7 @@
     <title>{{$user->name}} Profile</title>
 </head>
 <body>
+<x-Header id="{{auth()->id()}}"/>
     <h1>{{$user->name}}</h1>
     <h3>E-mail: {{$user->email}}</h3>
     

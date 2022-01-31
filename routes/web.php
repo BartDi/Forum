@@ -16,7 +16,7 @@ use App\Http\Controllers\PostsController;
 Route::get('/', [PostsController::class, 'show']);
 Route::get('/create', [PostsController::class, 'create'])->middleware('auth');
 Route::post('/create', [PostsController::class, 'addToBase'])->middleware('auth');
-Route::get('users/{user_id}', [PostsController::class, 'userProfile']);
+Route::get('/users/{user_id}', [PostsController::class, 'userProfile']);
 
 Auth::routes();
 
